@@ -8,38 +8,55 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDelegate {
+
+    
+    @IBOutlet var display: [UILabel]!
+    
+    @IBOutlet weak var firstday: UISegmentedControl!
+    
+  
+  
+    //set the picker of days per month
+    
+    @IBOutlet weak var textFieldOfDaysPerMonth: UITextField!
+    
+    var daysOfThisMonthPicker = UIPickerView()
+    let DaysOfAMonthOptions = ["28","29","30","31"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        daysOfThisMonthPicker.delegate = self
+        daysOfThisMonthPicker.dataSource = self
+        textFieldOfDaysPerMonth.inputView = daysOfThisMonthPicker
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return DaysOfAMonthOptions.count
+    }
     
     
-    private var setter: Int = 30
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        return DaysOfAMonthOptions[row]
+    }
+   
     
-    @IBInspectable
-    var daysOfThisMonthInspectable :Int {
-        set(newValue){
-            setter = max(newValue, 28)
-            setter = min(setter, 31)
-        }
-        get{
-            return setter
-        }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textFieldOfDaysPerMonth.text = DaysOfAMonthOptions[row]
+        self.view.endEditing(false)
     }
     
     
     
     
     
-    @IBOutlet var display: [UILabel]!
-    
-    @IBOutlet weak var firstday: UISegmentedControl!
-    
-    
-    
-    
-    
     @IBAction func setItForTest(_ sender: UIButton) {
-        var scheduling = SchedulingBrain( daysOfAMonth: daysOfThisMonthInspectable, firstDayOfAMonth: firstday.selectedSegmentIndex)
+        var scheduling = SchedulingBrain( daysOfAMonth: Int(textFieldOfDaysPerMonth.text!)!, firstDayOfAMonth: firstday.selectedSegmentIndex)
         let resultArray = scheduling.resultArray
-        
         
         
         

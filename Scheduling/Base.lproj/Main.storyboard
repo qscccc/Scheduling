@@ -327,16 +327,27 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-1f-UNS">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="knY-S8-MTA">
                                         <rect key="frame" x="0.0" y="571" width="343" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="fNJ-ge-ojx"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="setItForTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vi5-6W-Wfg"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5uQ-fa-Lo6">
+                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="60"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-1f-UNS">
+                                                <rect key="frame" x="171.5" y="0.0" width="171.5" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="fNJ-ge-ojx"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="setItForTest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vi5-6W-Wfg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -355,6 +366,7 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="firstday" destination="gt9-w1-1ZA" id="sfK-Fx-3Pp"/>
+                        <outlet property="textFieldOfDaysPerMonth" destination="5uQ-fa-Lo6" id="ViT-fP-fFu"/>
                         <outletCollection property="display" destination="zZH-Ck-QWy" collectionClass="NSMutableArray" id="NVz-zn-idS"/>
                         <outletCollection property="display" destination="Xu4-am-Lti" collectionClass="NSMutableArray" id="s3T-Vq-t9m"/>
                         <outletCollection property="display" destination="hLp-yR-LF7" collectionClass="NSMutableArray" id="Fp5-cH-ana"/>
