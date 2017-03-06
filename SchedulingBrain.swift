@@ -57,7 +57,7 @@ struct SchedulingBrain{
                 
                 var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
                 while(currentEmployeesDuty.count <= daysOfAMonth/employeesForScheduling.count){
-                    //
+                    //!!!!!!!WARNING: people is not equally arranged!!!!!!!
                     let currentDate = Int(arc4random())%daysOfAMonth
                     // assign a random date to current date
                     if daysForScheduling[currentDate] != currentEmployee
@@ -69,15 +69,16 @@ struct SchedulingBrain{
                         (currentDate >= daysForScheduling.count-2  || daysForScheduling[currentDate+2] != currentEmployee) //QOD
                         &&
                         (currentDate <= 1 || daysForScheduling[currentDate-2] != currentEmployee) //QOD
+                
                         // if current date's one or two day after/before was not the currentPersons duty
                         // then fill this person into current date
                         //TODO: add conditions to avoid weekend/holiday overduties
                     {
                         daysForScheduling[currentDate] = currentEmployee
-                        
+                        currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
+                        //recount current persons duty
                     }
-                    currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
-                    //recount current persons duty
+                    
                     
                 }
             }
@@ -125,17 +126,24 @@ struct SchedulingBrain{
         mutating get{
             performScheduling()
             return daysForScheduling
-            
         }
     }
     
-    public var dutyDays: Dictionary<String,Int> {
+    public var dutyDays: Dictionary<String,[Int]> {
         //read only duty days of workers
+        // as [(A: 1,3,5), (B: 2,4,6)....]
         get{
-            var dutyDaysDict: Dictionary<String,Int> = [:]
+            var dutyDaysDict: Dictionary<String,Array<Int>> = [:]
             for operatingPerson in employeesForScheduling{
-                let filteredArray = daysForScheduling.filter({S1 in return S1==operatingPerson})
-                dutyDaysDict[operatingPerson] = filteredArray.count
+                for (currentDate, currentEmployee) in daysForScheduling.enumerated(){
+                    if operatingPerson == currentEmployee{
+                        if  dutyDaysDict[operatingPerson] != nil{
+                            dutyDaysDict[operatingPerson]!.append(currentDate)
+                        }else{
+                            dutyDaysDict[operatingPerson] = [currentDate]
+                        }
+                    }
+                }
             }
             return dutyDaysDict
         }

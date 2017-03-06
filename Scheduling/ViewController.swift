@@ -55,7 +55,7 @@ class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDele
     @IBAction func performButton(_ sender: UIButton) {
         var scheduling = SchedulingBrain( daysOfAMonth: Int(textFieldOfDaysPerMonth.text!)!, firstDayOfAMonth: firstday.selectedSegmentIndex)
         let resultArray = scheduling.resultInArray
-        
+        print(scheduling.dutyDays.description)
         
         
         display.forEach({$0.text = "  "})
