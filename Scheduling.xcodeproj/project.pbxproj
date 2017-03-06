@@ -107,6 +107,7 @@
 				TargetAttributes = {
 					7F050EE51E6273B9009E0E6D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 96DBQT46BX;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -273,7 +274,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 96DBQT46BX;
 				INFOPLIST_FILE = Scheduling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qscccc.Scheduling;
@@ -287,7 +288,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 96DBQT46BX;
 				INFOPLIST_FILE = Scheduling/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qscccc.Scheduling;
