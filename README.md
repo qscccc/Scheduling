@@ -11,6 +11,7 @@ TODO:
 - Adjust Font size, label text before perform scheduling
 - export files
 - import calendar API
+- Make user can set some duties before scheduling 
 
 
 ChangeLog:
