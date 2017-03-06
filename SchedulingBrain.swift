@@ -13,10 +13,13 @@ import Foundation
 
 struct SchedulingBrain{
     
+    // set first day and days of a month in VC
     public var firstDayOfTheMonth: Int = 0
     public var daysOfAMonth:Int = 30              // range from 28~31
-    private let personsPendingForScheduling = ["A","B","C","D","E","F","G","H"]
-    private var daysPendingForScheduling = [String]()
+    
+    // "daysForScheduling was the array we performed on
+    private let employeesForScheduling = ["A","B","C","D","E","F","G","H"]
+    private var daysForScheduling = [String]()
     
     
     private var daysOfWeekendAndHolidays: Array<Int> = [] // not modified yet
@@ -37,37 +40,42 @@ struct SchedulingBrain{
     }
     
     
-    // TODO: add code for weekendsOrHoliday
-    
     
     
     private mutating func performScheduling(){
-        daysPendingForScheduling = [String](repeating: "noBodyOnDuty", count: daysOfAMonth )
-        while(daysPendingForScheduling.contains("noBodyOnDuty")){
-            //如果有天數是空的
-            for operatingPerson in personsPendingForScheduling{
-                //一個人一人排
-                let filteredArray = daysPendingForScheduling.filter({S1 in return S1==operatingPerson})
-                var dutiesOfThisPerson = filteredArray.count
-                while(dutiesOfThisPerson <= daysOfAMonth/personsPendingForScheduling.count){
-                    //如果這個人的班數<= 天數/人數，就開始排
-                    let operatingDate = Int(arc4random())%daysOfAMonth
-                    if daysPendingForScheduling[operatingDate] != operatingPerson //不重複
+        // empty the "daysForScheduling"
+        // while daysForScheduling has empty duty, then
+        // for each employee(currentEmployee) in "employeesForScheduling":
+        // while currentPersons duty not greater than aysOfAMonth/personsForScheduling.count)
+        // perform scheduling
+        
+        daysForScheduling = [String](repeating: "emptyDuty", count: daysOfAMonth )
+        while(daysForScheduling.contains("emptyDuty")){
+            
+            for currentEmployee in employeesForScheduling{
+                
+                var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
+                while(currentEmployeesDuty.count <= daysOfAMonth/employeesForScheduling.count){
+                    //
+                    let currentDate = Int(arc4random())%daysOfAMonth
+                    // assign a random date to current date
+                    if daysForScheduling[currentDate] != currentEmployee
                         &&
-                        (operatingDate >= daysPendingForScheduling.count-1  || daysPendingForScheduling[operatingDate+1] != operatingPerson) // avoid QD
+                        (currentDate >= daysForScheduling.count-1  || daysForScheduling[currentDate+1] != currentEmployee) //  QD
                         &&
-                        (operatingDate <= 0 || daysPendingForScheduling[operatingDate-1] != operatingPerson) //QD
+                        (currentDate <= 0 || daysForScheduling[currentDate-1] != currentEmployee) //QD
                         &&
-                        (operatingDate >= daysPendingForScheduling.count-2  || daysPendingForScheduling[operatingDate+2] != operatingPerson) //QOD
+                        (currentDate >= daysForScheduling.count-2  || daysForScheduling[currentDate+2] != currentEmployee) //QOD
                         &&
-                        (operatingDate <= 1 || daysPendingForScheduling[operatingDate-2] != operatingPerson) //QOD
-                        
+                        (currentDate <= 1 || daysForScheduling[currentDate-2] != currentEmployee) //QOD
+                        // if current date's one or two day after/before was not the currentPersons duty
+                        // then fill this person into current date
                     {
-                        daysPendingForScheduling[operatingDate] = operatingPerson
+                        daysForScheduling[currentDate] = currentEmployee
                         
                     }
-                    dutiesOfThisPerson = daysPendingForScheduling.filter({S1 in return S1==operatingPerson}).count
-                    
+                    currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
+                    //recount current persons duty
                     
                 }
             }
@@ -97,11 +105,12 @@ struct SchedulingBrain{
     }
     
     
-    public var result:String{
+    public var resultInString:String{
+        //read only result, which return a String
         mutating get{
             performScheduling()
             var resultString = ""
-            for compileDaysForScheduling in daysPendingForScheduling{
+            for compileDaysForScheduling in daysForScheduling{
                 resultString = resultString + compileDaysForScheduling
             }
             return resultString
@@ -109,22 +118,25 @@ struct SchedulingBrain{
     }
     
     
-    public var resultArray:[String]{
+    public var resultInArray:[String]{
+        //read only result, which return an Array
         mutating get{
             performScheduling()
-            return daysPendingForScheduling
+            return daysForScheduling
             
         }
     }
     
-    public var dutyDays:String{
-        var dutyDaysDict: Dictionary<String,Int> = [:]
-        for operatingPerson in personsPendingForScheduling{
-            let filteredArray = daysPendingForScheduling.filter({S1 in return S1==operatingPerson})
-            dutyDaysDict[operatingPerson] = filteredArray.count
+    public var dutyDays: Dictionary<String,Int> {
+        //read only duty days of workers
+        get{
+            var dutyDaysDict: Dictionary<String,Int> = [:]
+            for operatingPerson in employeesForScheduling{
+                let filteredArray = daysForScheduling.filter({S1 in return S1==operatingPerson})
+                dutyDaysDict[operatingPerson] = filteredArray.count
+            }
+            return dutyDaysDict
         }
-        return(String(describing: dutyDaysDict))
-        
     }
     
 }

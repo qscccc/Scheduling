@@ -10,14 +10,15 @@ import UIKit
 
 class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDelegate {
 
-    
+    // "display" showed result after performButton was touched
     @IBOutlet var display: [UILabel]!
     
+    // firstday of the month
     @IBOutlet weak var firstday: UISegmentedControl!
     
   
   
-    //set the picker of days per month
+    ///set the picker of days per month///
     
     @IBOutlet weak var textFieldOfDaysPerMonth: UITextField!
     
@@ -43,20 +44,17 @@ class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDele
         return DaysOfAMonthOptions[row]
     }
    
-    
-    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         textFieldOfDaysPerMonth.text = DaysOfAMonthOptions[row]
         self.view.endEditing(false)
     }
-    
+    ///done picker view setter///
     
    
     
-    
-    @IBAction func setItForTest(_ sender: UIButton) {
+    @IBAction func performButton(_ sender: UIButton) {
         var scheduling = SchedulingBrain( daysOfAMonth: Int(textFieldOfDaysPerMonth.text!)!, firstDayOfAMonth: firstday.selectedSegmentIndex)
-        let resultArray = scheduling.resultArray
+        let resultArray = scheduling.resultInArray
         
         
         
@@ -72,9 +70,8 @@ class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDele
                 display[result.offset+firstday.selectedSegmentIndex].textColor = UIColor.red
             }
         }
-        //print(scheduling.dutyDays)
+
     }
-    
 }
 
 
