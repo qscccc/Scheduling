@@ -19,11 +19,12 @@ struct SchedulingBrain{
     
     // "daysForScheduling was the array we performed on
     private let employeesForScheduling = ["A","B","C","D","E","F","G","H"]
+    //TODO: make user can set empolyees count, then name
     private var daysForScheduling = [String]()
     
     
-    private var daysOfWeekendAndHolidays: Array<Int> = [] // not modified yet
-    
+    private var daysOfWeekendAndHolidays: Array<Int> = []
+    //TODO: make user can set holidays
     
     
     
@@ -70,6 +71,7 @@ struct SchedulingBrain{
                         (currentDate <= 1 || daysForScheduling[currentDate-2] != currentEmployee) //QOD
                         // if current date's one or two day after/before was not the currentPersons duty
                         // then fill this person into current date
+                        //TODO: add conditions to avoid weekend/holiday overduties
                     {
                         daysForScheduling[currentDate] = currentEmployee
                         
