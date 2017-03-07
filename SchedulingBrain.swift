@@ -61,15 +61,8 @@ struct SchedulingBrain{
                     let currentDate = Int(arc4random())%daysOfAMonth
                     // assign a random date to current date
                     if daysForScheduling[currentDate] != currentEmployee
-                        &&
-                        (currentDate+1 > daysForScheduling.count-1  || daysForScheduling[currentDate+1] != currentEmployee) //  QD
-                        &&
-                        (currentDate-1 < 0 || daysForScheduling[currentDate-1] != currentEmployee) //QD
-                        &&
-                        (currentDate+2 > daysForScheduling.count-1  || daysForScheduling[currentDate+2] != currentEmployee) //QOD
-                        &&
-                        (currentDate-2 < 0 || daysForScheduling[currentDate-2] != currentEmployee) //QOD
-                        
+                        && isDutiesTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 1) //QD
+                        && isDutiesTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 2) //QOD
                         // if current date's one or two day after/before was not the currentPersons duty
                         // then fill this person into current date
                         //TODO: add conditions to avoid weekend/holiday overduties
@@ -80,9 +73,14 @@ struct SchedulingBrain{
                     }
                 }
             }
-            
-            
         }
+    }
+    
+    private func isDutiesTheSame(with currentEmployee: String, within daysForScheduling:[String], around currentDate: Int ,beforeAndAfter days: Int  )->Bool{
+        return (
+            (currentDate+days > daysForScheduling.count-1  || daysForScheduling[currentDate+days] != currentEmployee) &&
+            (currentDate-days < 0 || daysForScheduling[currentDate-days] != currentEmployee)
+        )
     }
     
     public var holidays: Array<Int>{
