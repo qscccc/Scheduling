@@ -62,14 +62,14 @@ struct SchedulingBrain{
                     // assign a random date to current date
                     if daysForScheduling[currentDate] != currentEmployee
                         &&
-                        (currentDate >= daysForScheduling.count-1  || daysForScheduling[currentDate+1] != currentEmployee) //  QD
+                        (currentDate+1 > daysForScheduling.count-1  || daysForScheduling[currentDate+1] != currentEmployee) //  QD
                         &&
-                        (currentDate <= 0 || daysForScheduling[currentDate-1] != currentEmployee) //QD
+                        (currentDate-1 < 0 || daysForScheduling[currentDate-1] != currentEmployee) //QD
                         &&
-                        (currentDate >= daysForScheduling.count-2  || daysForScheduling[currentDate+2] != currentEmployee) //QOD
+                        (currentDate+2 > daysForScheduling.count-1  || daysForScheduling[currentDate+2] != currentEmployee) //QOD
                         &&
-                        (currentDate <= 1 || daysForScheduling[currentDate-2] != currentEmployee) //QOD
-                
+                        (currentDate-2 < 0 || daysForScheduling[currentDate-2] != currentEmployee) //QOD
+                        
                         // if current date's one or two day after/before was not the currentPersons duty
                         // then fill this person into current date
                         //TODO: add conditions to avoid weekend/holiday overduties
@@ -78,10 +78,10 @@ struct SchedulingBrain{
                         currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
                         //recount current persons duty
                     }
-                    
-                    
                 }
             }
+            
+            
         }
     }
     
