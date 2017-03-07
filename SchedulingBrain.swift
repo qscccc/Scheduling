@@ -56,7 +56,6 @@ struct SchedulingBrain{
             for currentEmployee in employeesForScheduling{
                 var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
                 while(currentEmployeesDuty.count < daysOfAMonth/employeesForScheduling.count){
-                    //!!!!!!!WARNING: people is not equally arranged!!!!!!!
                     let currentDate = Int(arc4random())%daysOfAMonth
                     // assign a random date to current date
                     if  daysForScheduling[currentDate] == "emptyDuty" &&
