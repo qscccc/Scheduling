@@ -54,15 +54,15 @@ struct SchedulingBrain{
         while(daysForScheduling.contains("emptyDuty")){
             
             for currentEmployee in employeesForScheduling{
-                
                 var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
-                while(currentEmployeesDuty.count <= daysOfAMonth/employeesForScheduling.count){
+                while(currentEmployeesDuty.count < daysOfAMonth/employeesForScheduling.count){
                     //!!!!!!!WARNING: people is not equally arranged!!!!!!!
                     let currentDate = Int(arc4random())%daysOfAMonth
                     // assign a random date to current date
-                    if daysForScheduling[currentDate] != currentEmployee
-                        && isDutiesTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 1) //QD
-                        && isDutiesTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 2) //QOD
+                    if  daysForScheduling[currentDate] == "emptyDuty" &&
+                        isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 0) &&
+                        isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 1) &&    //QD
+                        isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 2)       //QOD
                         // if current date's one or two day after/before was not the currentPersons duty
                         // then fill this person into current date
                         //TODO: add conditions to avoid weekend/holiday overduties
@@ -73,13 +73,28 @@ struct SchedulingBrain{
                     }
                 }
             }
+            for currentEmployee in employeesForScheduling{
+                if daysForScheduling.filter({S1 in return S1==currentEmployee}).count <= daysOfAMonth/employeesForScheduling.count{
+                    for (currentDate, currentDuty) in daysForScheduling.enumerated(){
+                        if currentDuty == "emptyDuty" &&
+                            isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 0) &&
+                            isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 1) &&    //QD
+                            isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 2){
+                            daysForScheduling[currentDate] = currentEmployee
+                            break //break for (currentDate, currentDuty) ....
+                        }
+                }
+                }
+            }
+            
         }
+        
     }
     
-    private func isDutiesTheSame(with currentEmployee: String, within daysForScheduling:[String], around currentDate: Int ,beforeAndAfter days: Int  )->Bool{
+    private func isDutiesNotTheSame(with currentEmployee: String, within daysForScheduling:[String], around currentDate: Int ,beforeAndAfter days: Int)->Bool{
         return (
-            (currentDate+days > daysForScheduling.count-1  || daysForScheduling[currentDate+days] != currentEmployee) &&
-            (currentDate-days < 0 || daysForScheduling[currentDate-days] != currentEmployee)
+            (currentDate+days > daysForScheduling.count-1  || daysForScheduling[currentDate+days] != currentEmployee)
+                && (currentDate-days < 0 || daysForScheduling[currentDate-days] != currentEmployee)
         )
     }
     
