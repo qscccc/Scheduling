@@ -52,7 +52,7 @@ struct SchedulingBrain{
         
         daysForScheduling = [String](repeating: "emptyDuty", count: daysOfAMonth )
         while(daysForScheduling.contains("emptyDuty")){
-            
+            //filling fist time until every one's duty was equal
             for currentEmployee in employeesForScheduling{
                 var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
                 while(currentEmployeesDuty.count < daysOfAMonth/employeesForScheduling.count){
@@ -72,8 +72,9 @@ struct SchedulingBrain{
                     }
                 }
             }
+            
             for currentEmployee in employeesForScheduling{
-                if daysForScheduling.filter({S1 in return S1==currentEmployee}).count <= daysOfAMonth/employeesForScheduling.count{
+                // filling rest of empty days according to employeesForScheduling sequence
                     for (currentDate, currentDuty) in daysForScheduling.enumerated(){
                         if currentDuty == "emptyDuty" &&
                             isDutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 0) &&
@@ -82,7 +83,6 @@ struct SchedulingBrain{
                             daysForScheduling[currentDate] = currentEmployee
                             break //break for (currentDate, currentDuty) ....
                         }
-                }
                 }
             }
             

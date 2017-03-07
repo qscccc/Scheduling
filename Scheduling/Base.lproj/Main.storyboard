@@ -334,7 +334,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="171.5" height="60"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4N-1f-UNS">
                                                 <rect key="frame" x="171.5" y="0.0" width="171.5" height="60"/>
@@ -359,11 +359,6 @@
                             <constraint firstAttribute="leadingMargin" secondItem="Urd-CA-al4" secondAttribute="leading" id="o0a-fa-3Ap"/>
                         </constraints>
                     </view>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="daysOfThisMonthInspectable">
-                            <integer key="value" value="31"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="firstday" destination="gt9-w1-1ZA" id="sfK-Fx-3Pp"/>
                         <outlet property="textFieldOfDaysPerMonth" destination="5uQ-fa-Lo6" id="ViT-fP-fFu"/>
