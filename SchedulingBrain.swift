@@ -69,10 +69,17 @@ struct SchedulingBrain{
             //filling fist time until every one's duty was equal
             for currentEmployee in employeesForScheduling{
                 var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==currentEmployee})
+                var dateHadBeenArranged :Array<Int> = []
                 while(currentEmployeesDuty.count < daysOfAMonth/employeesForScheduling.count){
-                ///!!!!BUG: CANNOT ESCAPE LOOP IF SCHEDULING FAILED
                     let currentDate = Int(arc4random())%daysOfAMonth
                     // assign a random date to current date
+                    if !dateHadBeenArranged.contains(currentDate){
+                        dateHadBeenArranged.append(currentDate)
+                    }else if(dateHadBeenArranged.count >= daysOfAMonth){
+                        break
+                        // if all date had been tried, test next employee
+                    }
+                    
                     if  daysForScheduling[currentDate] == "emptyDuty"
                         && dutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 0)
                         && dutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 1)     //QD
@@ -87,11 +94,13 @@ struct SchedulingBrain{
                             //recount current persons duty
                     }
                     
+                    
                 }
             }
             
             for currentEmployee in employeesForScheduling{
                 // filling rest of empty days according to employeesForScheduling sequence
+
                     for (currentDate, currentDuty) in daysForScheduling.enumerated(){
                         if currentDuty == "emptyDuty"
                             && dutiesNotTheSame(with: currentEmployee, within: daysForScheduling, around: currentDate, beforeAndAfter: 0)
