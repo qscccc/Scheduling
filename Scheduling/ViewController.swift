@@ -65,7 +65,7 @@ class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDele
         for result in resultArray.enumerated(){
             display[result.offset+firstday.selectedSegmentIndex].text = "\(result.offset+1)\n" + result.element
             // display result on UILables, arrange it according to firstday selected
-            if scheduling.holidays.contains(result.offset){
+            if scheduling.daysOfWeekendAndHolidays.contains(result.offset){
                 // if result is in the holidays array, set label color into red
                 display[result.offset+firstday.selectedSegmentIndex].textColor = UIColor.red
             }
