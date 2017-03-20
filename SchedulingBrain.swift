@@ -61,7 +61,7 @@ struct SchedulingBrain{
         // empty the "daysForScheduling"
         // while daysForScheduling has empty duty, then
         // for each employee(currentEmployee) in "employeesForScheduling":
-        // while currentPersons duty not greater than aysOfAMonth/personsForScheduling.count)
+        // while currentPersons duty not greater than DaysOfAMonth/personsForScheduling.count)
         // perform scheduling for eachEmployee
         
         daysForScheduling = [String](repeating: "emptyDuty", count: daysOfAMonth )
@@ -110,7 +110,7 @@ struct SchedulingBrain{
     }
     
     mutating func defaultWeekend(){
-        daysOfWeekendAndHolidays = []
+        daysOfWeekendAndHolidays = [Int]()
         var weekendDay: Int = 0 - firstDayOfTheMonth
         while(weekendDay < daysOfAMonth){
             if weekendDay >= 0{

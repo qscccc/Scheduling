@@ -8,10 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDelegate {
+class scheduleViewController: UIViewController {
 
     // "display" showed result after performButton was touched
-    @IBOutlet var display: [UILabel]!
+    @IBOutlet var display: [UILabel]!{
+        didSet{
+            for i in 0...30 {
+                display[i].text = String(i+1)
+            }
+        }
+    }
     
     // firstday of the month
     @IBOutlet weak var firstday: UISegmentedControl!
@@ -20,35 +26,20 @@ class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDele
   
     ///set the picker of days per month///
     
-    @IBOutlet weak var textFieldOfDaysPerMonth: UITextField!
+    @IBOutlet weak var textFieldOfDaysPerMonth: UITextField!{
+        didSet{
+            daysOfThisMonthPicker.delegate = self
+            daysOfThisMonthPicker.dataSource = self
+            textFieldOfDaysPerMonth.inputView = daysOfThisMonthPicker
+        }
+    }
     
     var daysOfThisMonthPicker = UIPickerView()
     let DaysOfAMonthOptions = ["28","29","30","31"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        daysOfThisMonthPicker.delegate = self
-        daysOfThisMonthPicker.dataSource = self
-        textFieldOfDaysPerMonth.inputView = daysOfThisMonthPicker
     }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        return 1
-    }
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        return DaysOfAMonthOptions.count
-    }
-    
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
-        return DaysOfAMonthOptions[row]
-    }
-   
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        textFieldOfDaysPerMonth.text = DaysOfAMonthOptions[row]
-        self.view.endEditing(false)
-    }
-    ///done picker view setter///
     
    
     
@@ -72,6 +63,27 @@ class ViewController: UIViewController,UIPickerViewDataSource,  UIPickerViewDele
         }
 
     }
+}
+extension scheduleViewController:UIPickerViewDataSource,  UIPickerViewDelegate{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        return DaysOfAMonthOptions.count
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
+        return DaysOfAMonthOptions[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textFieldOfDaysPerMonth.text = DaysOfAMonthOptions[row]
+        self.view.endEditing(false)
+    }
+    ///done picker view setter///
+
 }
 
 
