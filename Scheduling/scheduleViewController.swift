@@ -8,7 +8,7 @@
 
 import UIKit
 
-class scheduleViewController: UIViewController {
+class ScheduleViewController: UIViewController {
 
     // "display" showed result after performButton was touched
     @IBOutlet var display: [UILabel]!{
@@ -64,7 +64,7 @@ class scheduleViewController: UIViewController {
 
     }
 }
-extension scheduleViewController:UIPickerViewDataSource,  UIPickerViewDelegate{
+extension ScheduleViewController:UIPickerViewDataSource,  UIPickerViewDelegate{
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
         return 1
