@@ -18,7 +18,7 @@ struct SchedulingBrain{
     public var daysOfAMonth:Int = 30              // range from 28~31
     
     // "daysForScheduling was the array we performed on
-    private let employeesForScheduling = ["A","B","C","D","E","F"]
+    private let employeesForScheduling = ["A","B","C","D","E","F","G","H","I","J","K","L"]
     //TODO: make user can set empolyees count, then name
     //BUG: when employees count is not 8, then the scheduling is unfair
     private var daysForScheduling = [String]()
@@ -69,9 +69,11 @@ struct SchedulingBrain{
         while(daysForScheduling.contains("emptyDuty")){
             //filling fist time until every one's duty was equal
             for eachEmployee in employeesForScheduling{
+                print(eachEmployee + "is been arranged")
                 var currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==eachEmployee})
                 var dateHadBeenArranged :Array<Int> = []
-                while(currentEmployeesDuty.count < daysOfAMonth/employeesForScheduling.count){
+                while(currentEmployeesDuty.count < daysOfAMonth/employeesForScheduling.count - 1){
+                    
                     let currentDate = Int(arc4random())%daysOfAMonth
                     // assign a random date to current date
                     if !dateHadBeenArranged.contains(currentDate){dateHadBeenArranged.append(currentDate)}
@@ -83,7 +85,7 @@ struct SchedulingBrain{
                         // then fill this person into current date
                     {
                              daysForScheduling[currentDate] = eachEmployee
-                            currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==eachEmployee})
+                             currentEmployeesDuty = daysForScheduling.filter({S1 in return S1==eachEmployee})
                             //recount current persons duty
                     }
                     if(dateHadBeenArranged.count >= daysOfAMonth){break}
