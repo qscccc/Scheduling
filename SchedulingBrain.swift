@@ -18,8 +18,9 @@ struct SchedulingBrain{
     public var daysOfAMonth:Int = 30              // range from 28~31
     
     // "daysForScheduling was the array we performed on
-    private let employeesForScheduling = ["A","B","C","D","E","F","G","H"]
+    private let employeesForScheduling = ["A","B","C","D","E","F"]
     //TODO: make user can set empolyees count, then name
+    //BUG: when employees count is not 8, then the scheduling is unfair
     private var daysForScheduling = [String]()
     public var daysOfWeekendAndHolidays: Array<Int> = []
     //TODO: make user can set holidays
