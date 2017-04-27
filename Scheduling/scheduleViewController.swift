@@ -10,6 +10,7 @@ import UIKit
 
 class ScheduleViewController: UIViewController {
 
+    public var scheduling = SchedulingBrain()
     // "display" showed result after performButton was touched
     @IBOutlet var display: [UILabel]!{
         didSet{
@@ -41,11 +42,20 @@ class ScheduleViewController: UIViewController {
         super.viewDidLoad()
     }
     
-   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var sourceViewController = segue.source
+        if let navigationController =  sourceViewController as? UINavigationController{
+            sourceViewController = navigationController.visibleViewController ?? sourceViewController
+            // if destinationVC is an UINavigationC, then make visibleViewController as destinationVC
+        }
+
+    }
     
     @IBAction func performButton(_ sender: UIButton) {
-        var scheduling = SchedulingBrain( daysOfAMonth: Int(textFieldOfDaysPerMonth.text!)!, firstDayOfAMonth: firstday.selectedSegmentIndex)
+        scheduling.daysOfAMonth = Int(textFieldOfDaysPerMonth.text!)!
+        scheduling.firstDayOfAMonth = firstday.selectedSegmentIndex
         let resultArray = scheduling.resultInArray
+        
         print(scheduling.dutyDays.description)
         
         

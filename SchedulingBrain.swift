@@ -14,7 +14,7 @@ import Foundation
 struct SchedulingBrain{
     
     // set first day and days of a month in VC
-    public var firstDayOfTheMonth: Int = 0
+    public var firstDayOfAMonth: Int = 0
     public var daysOfAMonth:Int = 30              // range from 28~31
     public var employeesCountForScheduling = 8
     
@@ -22,10 +22,35 @@ struct SchedulingBrain{
     lazy private var employeesForScheduling: ArraySlice<String> = ["A","B","C","D","E","F","G","H","I","J","K","L"].prefix(upTo: self.employeesCountForScheduling)
     //TODO: make user can set empolyees count, then name
     private var daysForScheduling = [String]()
-    public var daysOfWeekendAndHolidays: Array<Int> = []
+    
+    
+    public var daysOfWeekendAndHolidays: Array<Int> {
+        mutating get{
+            var weekendAndHolidays = [Int]()
+            var weekendDay: Int = 0 - firstDayOfAMonth
+            while(weekendDay < daysOfAMonth){
+                if weekendDay >= 0{
+                    weekendAndHolidays.append(weekendDay)
+                }
+                weekendDay += 7
+            }
+            weekendDay = 6 - firstDayOfAMonth
+            while(weekendDay < daysOfAMonth){
+                if weekendDay >= 0{
+                    weekendAndHolidays.append(weekendDay)
+                }
+                weekendDay += 7
+            }
+            return weekendAndHolidays
+        }
+        set{
+            
+        }
+    }
     //TODO: make user can set holidays
-    
-    
+    init(){
+        
+    }
 
     init(daysOfAMonth: Int){
         self.init(daysOfAMonth:daysOfAMonth, firstDayOfAMonth: 0)
@@ -35,8 +60,7 @@ struct SchedulingBrain{
     }
     init(daysOfAMonth: Int, firstDayOfAMonth: Int){
         self.daysOfAMonth = daysOfAMonth
-        self.firstDayOfTheMonth = firstDayOfAMonth
-        defaultWeekend()
+        self.firstDayOfAMonth = firstDayOfAMonth
     }
     
     private func dutiesNotTheSame(with currentEmployee: String, within daysForScheduling:[String], around currentDate: Int ,beforeAndAfter days: Int)->Bool{
@@ -112,23 +136,7 @@ struct SchedulingBrain{
         
     }
     
-    mutating func defaultWeekend(){
-        daysOfWeekendAndHolidays = [Int]()
-        var weekendDay: Int = 0 - firstDayOfTheMonth
-        while(weekendDay < daysOfAMonth){
-            if weekendDay >= 0{
-                daysOfWeekendAndHolidays.append(weekendDay)
-            }
-            weekendDay += 7
-        }
-        weekendDay = 6 - firstDayOfTheMonth
-        while(weekendDay < daysOfAMonth){
-            if weekendDay >= 0{
-                daysOfWeekendAndHolidays.append(weekendDay)
-            }
-            weekendDay += 7
-        }
-    }
+    
 
     
     

@@ -11,11 +11,10 @@ import UIKit
 class SettingViewController: UIViewController {
     
     @IBAction func stepperForPeopleCount(_ sender: UIStepper) {
-        
         peopleCount.text = String(Int(sender.value))
     }
     
-    @IBOutlet weak var peopleCount: UILabel!
+    @IBOutlet weak public var peopleCount: UILabel!
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -25,6 +24,11 @@ class SettingViewController: UIViewController {
             destinationViewController = navigationController.visibleViewController ?? destinationViewController
             // if destinationVC is an UINavigationC, then make visibleViewController as destinationVC
         }
+        if let schedulingVC = destinationViewController as? ScheduleViewController{
+                schedulingVC.scheduling.employeesCountForScheduling = Int(peopleCount.text!)!
+        }
+        
     }
+    
     
 }
