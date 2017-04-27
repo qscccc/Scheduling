@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7F050EEA1E6273B9009E0E6D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F050EE91E6273B9009E0E6D /* AppDelegate.swift */; };
-		7F050EEC1E6273B9009E0E6D /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F050EEB1E6273B9009E0E6D /* ScheduleViewController.swift */; };
 		7F050EEF1E6273B9009E0E6D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F050EED1E6273B9009E0E6D /* Main.storyboard */; };
 		7F050EF11E6273B9009E0E6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F050EF01E6273B9009E0E6D /* Assets.xcassets */; };
 		7F050EF41E6273B9009E0E6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F050EF21E6273B9009E0E6D /* LaunchScreen.storyboard */; };
 		7F050EFC1E6273CB009E0E6D /* SchedulingBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F050EFB1E6273CB009E0E6D /* SchedulingBrain.swift */; };
+		7F5AE94D1EB2082200232A3C /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F050EEB1E6273B9009E0E6D /* ScheduleViewController.swift */; };
 		7FEB84F91EB0B7EC00EDF5C4 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEB84F81EB0B7EC00EDF5C4 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,7 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F050EEC1E6273B9009E0E6D /* ScheduleViewController.swift in Sources */,
+				7F5AE94D1EB2082200232A3C /* ScheduleViewController.swift in Sources */,
 				7F050EFC1E6273CB009E0E6D /* SchedulingBrain.swift in Sources */,
 				7F050EEA1E6273B9009E0E6D /* AppDelegate.swift in Sources */,
 				7FEB84F91EB0B7EC00EDF5C4 /* SettingViewController.swift in Sources */,
