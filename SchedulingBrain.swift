@@ -16,11 +16,11 @@ struct SchedulingBrain{
     // set first day and days of a month in VC
     public var firstDayOfTheMonth: Int = 0
     public var daysOfAMonth:Int = 30              // range from 28~31
+    public var employeesCountForScheduling = 8
     
     // "daysForScheduling was the array we performed on
-    private let employeesForScheduling = ["A","B","C","D","E","F","G","H","I","J","K","L"]
+    lazy private var employeesForScheduling: ArraySlice<String> = ["A","B","C","D","E","F","G","H","I","J","K","L"].prefix(upTo: self.employeesCountForScheduling)
     //TODO: make user can set empolyees count, then name
-    //BUG: when employees count is not 8, then the scheduling is unfair
     private var daysForScheduling = [String]()
     public var daysOfWeekendAndHolidays: Array<Int> = []
     //TODO: make user can set holidays
@@ -45,7 +45,7 @@ struct SchedulingBrain{
                 && (currentDate-days < 0 || daysForScheduling[currentDate-days] != currentEmployee)
         )
     }
-    private func dutiesCountDuringHoliday(of currentEmployee: String )-> Int{
+    private mutating func dutiesCountDuringHoliday(of currentEmployee: String )-> Int{
         var holidayDutiesCount = 0
         if let dutyDaysOfCurrentEmployeeArray = dutyDays[currentEmployee] {
             for dutyDaysOfCurrentEmployee in dutyDaysOfCurrentEmployeeArray{
@@ -156,7 +156,8 @@ struct SchedulingBrain{
     public var dutyDays: Dictionary<String,[Int]> {
         //read only duty days of workers
         // as [(A: 1,3,5), (B: 2,4,6)....]
-        get{
+        mutating get{
+            //figure out why it should be mutating
             var dutyDaysDict: Dictionary<String,Array<Int>> = [:]
             for operatingPerson in employeesForScheduling{
                 for (currentDate, currentEmployee) in daysForScheduling.enumerated(){
