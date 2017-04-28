@@ -56,8 +56,7 @@ class ScheduleViewController: UIViewController {
         scheduling.firstDayOfAMonth = firstday.selectedSegmentIndex
         let resultArray = scheduling.resultInArray
         
-        print(scheduling.dutyDays.description)
-        
+  //      print(scheduling.dutyDays.description)
         
         display.forEach({$0.text = "  "})
         display.forEach({$0.textColor = UIColor.black})
