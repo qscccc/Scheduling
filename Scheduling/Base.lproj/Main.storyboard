@@ -38,40 +38,97 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qu-Yw-bjK">
-                                <rect key="frame" x="16" y="72" width="241" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qu-Yw-bjK">
+                                <rect key="frame" x="16" y="120" width="241" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="29" id="lsx-nb-GUX"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minimumValue="6" maximumValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="74Y-eg-bzc">
-                                <rect key="frame" x="265" y="72" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="stepperForPeopleCount:" destination="a16-fd-CY4" eventType="valueChanged" id="LoC-oo-nPg"/>
-                                </connections>
-                            </stepper>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck5-Rj-Qdl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ck5-Rj-Qdl">
                                 <rect key="frame" x="16" y="592" width="343" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="nXI-L1-93q"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <segue destination="DYb-d2-BQj" kind="showDetail" id="bXw-Wm-wxL"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many people?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gHY-9l-vxu">
+                                <rect key="frame" x="16" y="72" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="sSj-gX-lf2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="8" minimumValue="6" maximumValue="12" translatesAutoresizingMaskIntoConstraints="NO" id="74Y-eg-bzc">
+                                <rect key="frame" x="265" y="120" width="94" height="29"/>
+                                <connections>
+                                    <action selector="stepperForPeopleCount:" destination="a16-fd-CY4" eventType="valueChanged" id="LoC-oo-nPg"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consider QD?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcb-SA-ITz">
+                                <rect key="frame" x="16" y="157" width="286" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hBA-PO-8vW">
+                                <rect key="frame" x="310" y="162" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Consider QOD?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjv-1e-OzF">
+                                <rect key="frame" x="16" y="201" width="286" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A96-tR-c7u">
+                                <rect key="frame" x="310" y="206" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hBA-PO-8vW" firstAttribute="leading" secondItem="kcb-SA-ITz" secondAttribute="trailing" constant="8" symbolic="YES" id="3Rr-GE-PK3"/>
+                            <constraint firstItem="A96-tR-c7u" firstAttribute="trailing" secondItem="Ck5-Rj-Qdl" secondAttribute="trailing" id="3lc-0A-3fZ"/>
+                            <constraint firstItem="hBA-PO-8vW" firstAttribute="top" secondItem="74Y-eg-bzc" secondAttribute="bottom" constant="13" id="74S-RF-bqS"/>
+                            <constraint firstItem="kcb-SA-ITz" firstAttribute="centerY" secondItem="hBA-PO-8vW" secondAttribute="centerY" id="9tQ-gW-E0W"/>
+                            <constraint firstItem="hBA-PO-8vW" firstAttribute="leading" secondItem="A96-tR-c7u" secondAttribute="leading" id="AMp-zl-obD"/>
+                            <constraint firstItem="7qu-Yw-bjK" firstAttribute="leading" secondItem="kcb-SA-ITz" secondAttribute="leading" id="AaI-Ks-WJ3"/>
+                            <constraint firstItem="gHY-9l-vxu" firstAttribute="trailing" secondItem="74Y-eg-bzc" secondAttribute="trailing" id="C1a-hj-aA7"/>
+                            <constraint firstItem="74Y-eg-bzc" firstAttribute="leading" secondItem="7qu-Yw-bjK" secondAttribute="trailing" constant="8" symbolic="YES" id="ESN-8Y-RUd"/>
+                            <constraint firstItem="hjv-1e-OzF" firstAttribute="centerY" secondItem="A96-tR-c7u" secondAttribute="centerY" id="Gam-f2-aUJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Ck5-Rj-Qdl" secondAttribute="bottom" constant="20" symbolic="YES" id="K9m-1R-GfB"/>
+                            <constraint firstItem="74Y-eg-bzc" firstAttribute="trailing" secondItem="hBA-PO-8vW" secondAttribute="trailing" id="Kdr-La-a9d"/>
+                            <constraint firstItem="gHY-9l-vxu" firstAttribute="leading" secondItem="vUZ-WF-4iS" secondAttribute="leadingMargin" id="SOZ-pl-Evg"/>
+                            <constraint firstItem="7qu-Yw-bjK" firstAttribute="top" secondItem="74Y-eg-bzc" secondAttribute="top" id="Sb2-wp-Ccp"/>
+                            <constraint firstItem="A96-tR-c7u" firstAttribute="top" secondItem="hBA-PO-8vW" secondAttribute="bottom" constant="13" id="Zhv-xH-iO9"/>
+                            <constraint firstItem="kcb-SA-ITz" firstAttribute="top" secondItem="7qu-Yw-bjK" secondAttribute="bottom" constant="8" symbolic="YES" id="hG9-eg-TRD"/>
+                            <constraint firstItem="kcb-SA-ITz" firstAttribute="leading" secondItem="hjv-1e-OzF" secondAttribute="leading" id="jty-aq-sIr"/>
+                            <constraint firstItem="hjv-1e-OzF" firstAttribute="leading" secondItem="Ck5-Rj-Qdl" secondAttribute="leading" id="l3G-xq-0kv"/>
+                            <constraint firstItem="A96-tR-c7u" firstAttribute="leading" secondItem="hjv-1e-OzF" secondAttribute="trailing" constant="8" symbolic="YES" id="mAg-tk-0UT"/>
+                            <constraint firstItem="gHY-9l-vxu" firstAttribute="trailing" secondItem="vUZ-WF-4iS" secondAttribute="trailingMargin" id="qhh-45-ash"/>
+                            <constraint firstItem="gHY-9l-vxu" firstAttribute="leading" secondItem="7qu-Yw-bjK" secondAttribute="leading" id="tG9-iw-fM6"/>
+                            <constraint firstItem="hjv-1e-OzF" firstAttribute="top" secondItem="kcb-SA-ITz" secondAttribute="bottom" constant="4" id="xbN-ZP-ILH"/>
+                            <constraint firstItem="7qu-Yw-bjK" firstAttribute="top" secondItem="gHY-9l-vxu" secondAttribute="bottom" constant="8" symbolic="YES" id="xgP-8D-6tv"/>
+                            <constraint firstItem="gHY-9l-vxu" firstAttribute="top" secondItem="Ljl-eN-7G6" secondAttribute="bottom" constant="8" symbolic="YES" id="zTF-yd-hU9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LsL-Gd-XNu"/>
                     <connections>
+                        <outlet property="considerQD" destination="hBA-PO-8vW" id="LXJ-M8-lf2"/>
+                        <outlet property="considerQOD" destination="A96-tR-c7u" id="8qg-to-bXf"/>
                         <outlet property="peopleCount" destination="7qu-Yw-bjK" id="Dkk-M3-kkd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7c-MK-Ieu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="-487"/>
+            <point key="canvasLocation" x="360.80000000000001" y="-487.10644677661173"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="WPt-oL-N63">

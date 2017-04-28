@@ -26,9 +26,14 @@ class SettingViewController: UIViewController {
         }
         if let schedulingVC = destinationViewController as? ScheduleViewController{
                 schedulingVC.scheduling.employeesCountForScheduling = Int(peopleCount.text!)!
+                schedulingVC.scheduling.notConsiderQD = !considerQD.isOn
+                schedulingVC.scheduling.notConsiderQOD = !considerQOD.isOn
+            
         }
         
     }
     
+    @IBOutlet weak var considerQOD: UISwitch!
     
+    @IBOutlet weak var considerQD: UISwitch!
 }
